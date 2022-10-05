@@ -1,28 +1,32 @@
-from dish import Dish
+from dish import Dish, DishType
 
-pannkakor = Dish("Pannkakor", 80, "Vegetarian", 20  )
-dish2 = Dish("Köttsoppa", 75, "Meat", 150  )
-dish3 = Dish("Biff med bearnaise", 90, "Meat", 50  )
+def PrintSubMenu(rubrik:str, type:DishType, dishlist:list):
+    print(rubrik)
+    for dish in dishlist:
+        if dish.GetType() == type:
+            print(f"{dish.GetName()} {dish.GetPrice()} {dish.GetCalories()}")
 
-lunchDishes = [pannkakor, dish2, dish3]
+pannkakor = Dish("Pannkakor", 80, DishType.Vegatarian, 20 )
+dish2 = Dish("Köttsoppa", 75, DishType.Meat, 150  )
+dish3 = Dish("Biff med bearnaise", 90, DishType.Meat, 50  )
+dish = Dish("Köttbullar", 100, DishType.Meat , 100)
+lunchDishes = [pannkakor, dish2, dish3, dish]
 
-print("VEGETARISK")
-for dish in lunchDishes:
-    if dish.GetType() == "Vegetarian":
-        print(f"{dish.GetName()} {dish.GetPrice()} {dish.GetCalories()}")
+PrintSubMenu("VEGETARISK", DishType.Vegatarian, lunchDishes)
+PrintSubMenu("KÖTT", DishType.Meat, lunchDishes)
+PrintSubMenu("VEGANSK", DishType.Vegan, lunchDishes)
 
-print("KÖTT")
-for dish in lunchDishes:
-    if dish.GetType()== "Meat":
-        print(f"{dish.GetName()} {dish.GetPrice()} {dish.GetCalories()}")
+# class PlayerPosition(Enum):
+#     Goalie = 1,
+#     Defence= 2,
+#     Midfielder = 3,
+#     Forward = 4
 
-print("VEGANSK")
-for dish in lunchDishes:
-    if dish.GetType() == "Vegan":
-        print(f"{dish.GetName()} {dish.GetPrice()} {dish.GetCalories()}")
+# class Player:
+#     def __init__(self, namn, playerposition)    :
+#         self.__namn = namn
+#         self.__playerposition = playerposition
 
-
-
-
+# zlatan = Player("Zlatan", PlayerPosition.Forward )        
 
 
